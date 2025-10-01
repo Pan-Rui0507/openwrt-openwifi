@@ -7,8 +7,8 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_VERSION:=2025.07
-PKG_HASH:=0f933f6c5a426895bf306e93e6ac53c60870e4b54cda56d95211bec99e63bec7
+PKG_VERSION:=2025.01
+PKG_HASH:=cdef7d507c93f1bbd9f015ea9bc21fa074268481405501945abc6f854d5b686f
 
 include $(INCLUDE_DIR)/kernel.mk
 include $(INCLUDE_DIR)/u-boot.mk
@@ -109,11 +109,16 @@ UBOOT_TARGETS := \
 UBOOT_CUSTOMIZE_CONFIG := \
 	--disable TOOLS_MKEFICAPSULE
 
+UBOOT_CONFIGURE_VARS := DEVICE_TREE="zynq-antsdre200"
+UBOOT_MAKE_FLAGS := DEVICE_TREE="zynq-antsdre200"
+
 define Build/InstallDev
 	$(INSTALL_DIR) $(STAGING_DIR_IMAGE)
 	$(CP) $(PKG_BUILD_DIR)/spl/boot.bin $(STAGING_DIR_IMAGE)/$(BUILD_DEVICES)-boot.bin
 	$(CP) $(PKG_BUILD_DIR)/u-boot.img $(STAGING_DIR_IMAGE)/$(BUILD_DEVICES)-u-boot.img
-	$(CP) ./files/uEnv-$(UENV).txt $(STAGING_DIR_IMAGE)/$(BUILD_DEVICES)-uEnv.txt
+
+	# Compile boot command
+	mkimage -A arm -T script -C none -d ./files/boot.cmd $(STAGING_DIR_IMAGE)/$(BUILD_DEVICES)-boot.scr
 endef
 
 define Package/u-boot/install/default
