@@ -1,4 +1,4 @@
-src-git openwifi https://github.com/Pan-Rui0507/openwrt-openwifi-packages-feed.git^87a7f28ae02da2950c0c25fd77e7c7b4627e6bae
+src-git openwifi https://github.com/Pan-Rui0507/openwrt-openwifi-packages-feed.git^97f4b4470a16f70b7daeaa57ad425ab0a63cb325
 
 src-git packages https://git.openwrt.org/feed/packages.git^f1470815f41fe199bfdafe9a91ad115bc2e91203
 src-git luci https://git.openwrt.org/project/luci.git^75e41cba5160281b2d1dca922719efef29f7ffd8
